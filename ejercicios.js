@@ -3,6 +3,30 @@
 // 20 Ejercicios Didácticos para Estudiantes
 // ========================================================
 
+// --------------------------------------------------------
+// FUNCIONES BÁSICAS DE CAPTURA (muy simples y didácticas)
+// --------------------------------------------------------
+// Estas funciones ayudan a "capturar" texto o números desde
+// los inputs del HTML usando la forma más sencilla posible.
+// Son intencionalmente básicas para que un estudiante las entienda.
+function leerTexto(id) {
+    const el = document.getElementById(id);
+    // Si el elemento no existe devolvemos cadena vacía
+    return el ? (el.value || '') : '';
+}
+
+function leerNumero(id) {
+    // Leemos como texto y hacemos una conversión básica a Number
+    const texto = leerTexto(id).toString().trim();
+    const numero = Number(texto); // Number es la forma básica para convertir
+    return isNaN(numero) ? NaN : numero;
+}
+
+// Helper muy sencillo para formatear dinero (opcional y simple)
+function formatoMoneda(n) {
+    return isNaN(n) ? n : n.toFixed(2);
+}
+
 // Definimos todos los ejercicios en un arreglo
 const ejercicios = [
     // ========== EJERCICIO 1 ==========
@@ -28,10 +52,10 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            // Traemos los valores del HTML
-            const precio1 = parseFloat(document.getElementById('ej1-precio1').value);
-            const precio2 = parseFloat(document.getElementById('ej1-precio2').value);
-            const precio3 = parseFloat(document.getElementById('ej1-precio3').value);
+            // Traemos los valores del HTML usando funciones básicas
+            const precio1 = leerNumero('ej1-precio1');
+            const precio2 = leerNumero('ej1-precio2');
+            const precio3 = leerNumero('ej1-precio3');
 
             // Validar que los valores sean números
             if (isNaN(precio1) || isNaN(precio2) || isNaN(precio3)) {
@@ -74,8 +98,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const ancho = parseFloat(document.getElementById('ej2-ancho').value);
-            const alto = parseFloat(document.getElementById('ej2-alto').value);
+            const ancho = leerNumero('ej2-ancho');
+            const alto = leerNumero('ej2-alto');
 
             if (isNaN(ancho) || isNaN(alto) || ancho <= 0 || alto <= 0) {
                 return { error: "Por favor ingresa números positivos válidos" };
@@ -117,8 +141,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const largo = parseFloat(document.getElementById('ej3-largo').value);
-            const ancho = parseFloat(document.getElementById('ej3-ancho').value);
+            const largo = leerNumero('ej3-largo');
+            const ancho = leerNumero('ej3-ancho');
 
             if (isNaN(largo) || isNaN(ancho) || largo <= 0 || ancho <= 0) {
                 return { error: "Por favor ingresa números positivos válidos" };
@@ -156,7 +180,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const fahrenheit = parseFloat(document.getElementById('ej4-fahrenheit').value);
+            const fahrenheit = leerNumero('ej4-fahrenheit');
 
             if (isNaN(fahrenheit)) {
                 return { error: "Por favor ingresa un número válido" };
@@ -192,7 +216,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const año = parseInt(document.getElementById('ej5-año').value);
+            const año = leerNumero('ej5-año');
 
             if (isNaN(año) || año < 1900 || año > 2024) {
                 return { error: "Por favor ingresa un año válido" };
@@ -233,8 +257,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const nombre = document.getElementById('ej6-nombre').value.trim();
-            const apellido = document.getElementById('ej6-apellido').value.trim();
+            const nombre = leerTexto('ej6-nombre').trim();
+            const apellido = leerTexto('ej6-apellido').trim();
 
             if (nombre === "" || apellido === "") {
                 return { error: "Por favor ingresa nombre y apellido" };
@@ -286,9 +310,9 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const nota1 = parseFloat(document.getElementById('ej7-nota1').value);
-            const nota2 = parseFloat(document.getElementById('ej7-nota2').value);
-            const nota3 = parseFloat(document.getElementById('ej7-nota3').value);
+            const nota1 = leerNumero('ej7-nota1');
+            const nota2 = leerNumero('ej7-nota2');
+            const nota3 = leerNumero('ej7-nota3');
 
             if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
                 return { error: "Por favor ingresa números válidos" };
@@ -341,8 +365,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const horas = parseFloat(document.getElementById('ej8-horas').value);
-            const precioHora = parseFloat(document.getElementById('ej8-preciohora').value);
+            const horas = leerNumero('ej8-horas');
+            const precioHora = leerNumero('ej8-preciohora');
 
             if (isNaN(horas) || isNaN(precioHora) || horas < 0 || precioHora < 0) {
                 return { error: "Por favor ingresa números válidos y positivos" };
@@ -379,7 +403,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const millas = parseFloat(document.getElementById('ej9-millas').value);
+            const millas = leerNumero('ej9-millas');
 
             if (isNaN(millas) || millas < 0) {
                 return { error: "Por favor ingresa un número válido y positivo" };
@@ -416,7 +440,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const minutosTotal = parseInt(document.getElementById('ej10-minutos').value);
+            const minutosTotal = leerNumero('ej10-minutos');
 
             if (isNaN(minutosTotal) || minutosTotal < 0) {
                 return { error: "Por favor ingresa un número válido y positivo" };
@@ -459,8 +483,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const precio = parseFloat(document.getElementById('ej11-precio').value);
-            const descuento = parseFloat(document.getElementById('ej11-descuento').value);
+            const precio = leerNumero('ej11-precio');
+            const descuento = leerNumero('ej11-descuento');
 
             if (isNaN(precio) || isNaN(descuento) || precio < 0 || descuento < 0 || descuento > 100) {
                 return { error: "Por favor ingresa valores válidos (descuento 0-100%)" };
@@ -499,7 +523,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const precio = parseFloat(document.getElementById('ej12-precio').value);
+            const precio = leerNumero('ej12-precio');
 
             if (isNaN(precio) || precio < 0) {
                 return { error: "Por favor ingresa un número válido y positivo" };
@@ -546,9 +570,9 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const capital = parseFloat(document.getElementById('ej13-capital').value);
-            const tasa = parseFloat(document.getElementById('ej13-tasa').value);
-            const años = parseFloat(document.getElementById('ej13-años').value);
+            const capital = leerNumero('ej13-capital');
+            const tasa = leerNumero('ej13-tasa');
+            const años = leerNumero('ej13-años');
 
             if (isNaN(capital) || isNaN(tasa) || isNaN(años) || capital < 0 || tasa < 0 || años < 0) {
                 return { error: "Por favor ingresa números válidos y positivos" };
@@ -593,8 +617,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const base = parseFloat(document.getElementById('ej14-base').value);
-            const altura = parseFloat(document.getElementById('ej14-altura').value);
+            const base = leerNumero('ej14-base');
+            const altura = leerNumero('ej14-altura');
 
             if (isNaN(base) || isNaN(altura) || base <= 0 || altura <= 0) {
                 return { error: "Por favor ingresa números válidos y positivos" };
@@ -635,8 +659,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const nombre = document.getElementById('ej15-nombre').value.trim();
-            const apellido = document.getElementById('ej15-apellido').value.trim();
+            const nombre = leerTexto('ej15-nombre').trim();
+            const apellido = leerTexto('ej15-apellido').trim();
 
             if (nombre === "" || apellido === "") {
                 return { error: "Por favor ingresa nombre y apellido" };
@@ -678,7 +702,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const dolares = parseFloat(document.getElementById('ej16-dolares').value);
+            const dolares = leerNumero('ej16-dolares');
 
             if (isNaN(dolares) || dolares < 0) {
                 return { error: "Por favor ingresa un número válido y positivo" };
@@ -717,7 +741,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const libras = parseFloat(document.getElementById('ej17-libras').value);
+            const libras = leerNumero('ej17-libras');
 
             if (isNaN(libras) || libras < 0) {
                 return { error: "Por favor ingresa un número válido y positivo" };
@@ -754,7 +778,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const numero = parseInt(document.getElementById('ej18-numero').value);
+            const numero = leerNumero('ej18-numero');
 
             if (isNaN(numero) || numero < 10 || numero > 99) {
                 return { error: "Por favor ingresa un número entre 10 y 99" };
@@ -795,7 +819,7 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const asistentes = parseInt(document.getElementById('ej19-asistentes').value);
+            const asistentes = leerNumero('ej19-asistentes');
 
             if (isNaN(asistentes) || asistentes <= 0) {
                 return { error: "Por favor ingresa un número válido y positivo" };
@@ -837,8 +861,8 @@ const ejercicios = [
             </div>
         `,
         calcular: function() {
-            const distancia = parseFloat(document.getElementById('ej20-distancia').value);
-            const tiempo = parseFloat(document.getElementById('ej20-tiempo').value);
+            const distancia = leerNumero('ej20-distancia');
+            const tiempo = leerNumero('ej20-tiempo');
 
             if (isNaN(distancia) || isNaN(tiempo) || distancia < 0 || tiempo <= 0) {
                 return { error: "Por favor ingresa valores válidos (tiempo mayor a 0)" };
