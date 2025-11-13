@@ -218,18 +218,18 @@ const ejercicios = [
         calcular: function() {
             const año = leerNumero('ej5-año');
 
-            if (isNaN(año) || año < 1900 || año > 2024) {
+            if (isNaN(año) || año < 1900 || año > 2025) {
                 return { error: "Por favor ingresa un año válido" };
             }
 
             // Restar el año de nacimiento del año actual (2024)
-            const edad = 2024 - año;
+            const edad = 2025 - año;
 
             return {
                 resultado: `
                     <strong>👤 Información de edad:</strong><br>
                     Año de nacimiento: ${año}<br>
-                    Año actual: 2024<br>
+                    Año actual: 2025<br>
                     <strong style="color: #28a745; font-size: 16px;">
                     Edad: ${edad} años
                     </strong>
