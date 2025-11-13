@@ -222,7 +222,7 @@ const ejercicios = [
                 return { error: "Por favor ingresa un año válido" };
             }
 
-            // Restar el año de nacimiento del año actual (2024)
+            // Restar el año de nacimiento del año actual (2025)
             const edad = 2025 - año;
 
             return {
